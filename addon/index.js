@@ -682,7 +682,9 @@ function immutableInit (config) {
 
       for (var key in obj) {
         if (getOwnPropertyDescriptor(obj, key)) {
-          clone[key] = Immutable(obj[key], undefined, stackRemaining)
+          if (key !== '__ember_meta__') {
+            clone[key] = Immutable(obj[key], undefined, stackRemaining);
+          }
         }
       }
 
